@@ -1,0 +1,91 @@
+
+/*page design*/
+
+.annoying-image {
+    background-color: gray;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -9999;
+}
+
+.black-bar {
+    margin-top: 10%;
+    padding-top: 5%;
+    background-color: black;
+    opacity: 0.7;
+}
+
+/*components*/
+
+.box {
+    color: white;
+    font-weight: 100;
+    font-size: 16px;
+}
+
+.weather {
+    justify-content: flex-end;
+}
+
+.quote {
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.clock {
+    font-size: 60px;
+    padding-top: 10% ;
+    justify-content: center;
+    align-items: center;
+}
+
+.underline:hover {
+    text-decoration: underline;
+}
+
+.hideAuthor {
+    display:none;
+}
+
+.weather {
+    display: flex;
+    justify-content: flex-end;
+    
+}
+
+.mini-weather {
+    background-color: black;
+    opacity: 0.8;
+    padding: 5px 5px 5px 5px;
+}
+
+/*todos*/
+
+.strikeThrough {
+    text-decoration: line-through;
+}
+
+.form-styler {
+    color: black !important;
+}
+
+.todo-box {
+    color: white;
+    font-weight: 100;
+    font-size: 16px;
+    height: 150px;
+    /*width: 300px; */
+    /*overflow-y: scroll; */
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: flex;
+}
+
+.spacer {
+    margin: 5px 0 5px 0;
+}
+

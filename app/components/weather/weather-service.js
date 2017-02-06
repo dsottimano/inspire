@@ -8,7 +8,7 @@ function WeatherService() {
 		var w = localStorage.getItem('weather');
 		if (w) {
 			w = JSON.parse(w);
-			console.log('Weather Data:', w)
+			// console.log('Weather Data:', w)
 			return callWhenDone(w)
 		}
 

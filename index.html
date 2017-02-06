@@ -3,42 +3,90 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Inspire</title>
-	<link rel="stylesheet" href="assets/css/style.css">
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+					crossorigin="anonymous">
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+						crossorigin="anonymous">
+			<link rel="stylesheet" href="assets/css/style.css">
+			<link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
+			<link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
 </head>
 
-<body id="body">
-	<div id="weather">
-		{{weather}}
+<body>
+	<div id="image" class="annoying-image"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="weather box" id="weather">
+					<p class="mini-weather">{{temperature}} {{type}} <span> in {{city}}</span> <a href="#"><i class="fa fa-thermometer-full fa-large" @click="changeWeather()"></i></a></p>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 col-md-12 text-center" id="clock">
+				<p class="clock box">Hello {{personName}}, {{timeMessage}} <br> {{thetime}}
+					<a href="#" @click="openSettings()">
+						<i class="fa fa-cog spacer" aria-hidden="true"></i></p>
+				</a>
+				<div v-if="settingsBox">
+				<button class="btn btn-xs" @click="changeTime()">Switch 24 hour / 12 hour clock</button>
+				<form class="spacer" v-on:submit.prevent="changeName()">
+					<label for="usr" style="color:white;">Enter your name:</label>
+					<input type="text" v-model="personName" id="usr">
+				</form>
+				</div>
+				</p>
+			</div>
+		</div>
 	</div>
-
-	<div id="quote">
-
+	<div class="container-fluid text-center">
+		<div class="row black-bar ">
+			<div class="col-xs-12 col-sm-12 col-md-3">
+				<a href="#">
+					<p class="box underline" onclick="changeBg()"><i class="fa fa-cog spacer" aria-hidden="true"></i> Change Background</p>
+				</a>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-3">
+				<div class="quote box" id="quote">
+					<p v-on:mouseover="authorShow = !authorShow">{{QuoteText}} - </p>
+					<p :class="{hideAuthor: authorShow}"> <em> {{Quoteauthor}}</em></p>
+				</div>
+			</div>
+			<div id="todo">
+				<div class="col-xs-12 col-sm-12 col-md-3">
+					<form v-on:submit.prevent="pushTodos">
+						<input type="text" class="form-styler" v-model="userInput" placeholder="Add todo">
+					</form>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-md-3 todo-box">
+					<div v-if='todo'>
+						<p>Todo list</p>
+						<ul v-for='(items, iterator) in todo' style="list-style: none;">
+							<li :class="{strikeThrough: items.completed}">{{items.task}}
+								<i class="fa fa-trash-o" aria-hidden="true" @click="deleteTodo(iterator)"></i>
+								<i class="fa fa-check" aria-hidden="true" @click="completeTodo(iterator)"></i>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-
-	<div id="todo">
-
-	</div>
-
-
-
-
-		<!--JS Libraries-->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js"></script>
+	<!--JS Libraries-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.js"></script>
 	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-
 	<!--Initialize App-->
 	<script src="app/init.js"></script>
 	<script src="app/components/weather/weather-service.js"></script>
 	<script src="app/components/image/image-service.js"></script>
 	<script src="app/components/quote/quote-service.js"></script>
 	<script src="app/components/todo/todo-service.js"></script>
-
 	<!--Load your scripts below-->
 	<script src="app/components/weather/weather-controller.js"></script>
+	<script src="app/components/clock/clock-controller.js"></script>
 	<script src="app/components/image/image-controller.js"></script>
 	<script src="app/components/quote/quote-controller.js"></script>
 	<script src="app/components/todo/todo-controller.js"></script>
-
 </body>
 
 </html>
